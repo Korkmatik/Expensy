@@ -32,9 +32,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction>  transactions = [
-    Transaction(id: 't1', title: 'New Shoes', amount: 29.99, date: DateTime.now()),
-    Transaction(id: 't2', title: 'Groceries', amount: 17.42, date: DateTime.now()),
+  final List<Transaction> transactions = [
+    Transaction(
+        id: 't1', title: 'New Shoes', amount: 29.99, date: DateTime.now()),
+    Transaction(
+        id: 't2', title: 'Groceries', amount: 17.42, date: DateTime.now()),
   ];
 
   MyHomePage({Key? key}) : super(key: key);
@@ -59,7 +61,52 @@ class MyHomePage extends StatelessWidget {
             ),
             Column(
               children: <Widget>[
-                ...(transactions.map((e) => Card(child: Text(e.title))).toList()),
+                ...(transactions
+                    .map(
+                      (e) => Card(
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(
+                                e.amount.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.purple,
+                                ),
+                              ),
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 30,
+                              ),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                color: Colors.purple,
+                                width: 2.0,
+                              )),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  e.title,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  e.date.toString(),
+                                  style: const TextStyle(color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                    .toList()),
               ],
             ),
           ],
