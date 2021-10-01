@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         accentColor: Colors.amber,
+        fontFamily: 'Roboto',
       ),
       home: const MyHomePage(),
     );
