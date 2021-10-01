@@ -17,3 +17,4 @@ samples, guidance on mobile development, and a full API reference.
 
 # Assets
 - Robot Font: https://fonts.google.com/specimen/Roboto#standard-styles
+- hourglass-split.svg: https://icons.getbootstrap.com/icons/hourglass-split/
