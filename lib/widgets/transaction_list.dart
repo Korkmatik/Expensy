@@ -20,7 +20,7 @@ class TransactionList extends StatelessWidget {
                 children: [
                   Container(
                     child: Text(
-                      "${_transactions[index].amount} €",
+                      "${_transactions[index].amount.toStringAsFixed(2)} €",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
