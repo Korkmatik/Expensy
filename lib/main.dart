@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'models/transaction.dart';
 import 'widgets/new_transaction.dart';
 import 'widgets/transaction_list.dart';
+import 'package:expense_planer/widgets/chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +41,14 @@ class _MyHomePageState extends State<MyHomePage> {
     Transaction(
         id: 't2', title: 'Groceries', amount: 17.42, date: DateTime.now()),*/
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((element) {
+      return element.date.isAfter(
+          DateTime.now().subtract(const Duration(days: 7))
+      );
+    }).toList();
+  }
 
   void _addNewTransaction(String title, double amount) {
     final transaction = Transaction(
@@ -83,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             width: double.infinity,
             child: Card(
-              child: Text('CHART'),
+              child: Chart(_recentTransactions),
               elevation: 3,
               color: Colors.blue,
             ),

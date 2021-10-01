@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import 'package:expense_planer/models/transaction.dart';
+
+class Chart extends StatelessWidget {
+  final List<Transaction> _transactions;
+
+  List<Map<String, Object>> get groupedTransactionValues {
+    return List.generate(7, (index) {
+      final weekDay = DateTime.now().subtract(Duration(days: index));
+      final weekDayIdentifier = DateFormat.E().format(weekDay);
+
+      // Calculating the amount on the given weekday
+      double totalAmount = 0.0;
+      for (var i = 0; i < _transactions.length; i++) {
+        if (_transactions[i].date.day == weekDay.day &&
+            _transactions[i].date.month == weekDay.month &&
+            _transactions[i].date.year == weekDay.year) {
+
+          totalAmount += _transactions[i].amount;
+        }
+      }
+
+      return {'day': weekDayIdentifier, 'amount': totalAmount};
+    });
+  }
+
+  const Chart(this._transactions, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 6,
+      margin: const EdgeInsets.all(20),
+      child: Row(
+        children: [],
+      ),
+    );
+  }
+}
