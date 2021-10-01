@@ -11,7 +11,6 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
 
   void submitData() {
@@ -23,6 +22,8 @@ class _NewTransactionState extends State<NewTransaction> {
     }
 
     widget.addTransactionHandler(enteredTitle, enteredAmount);
+
+    Navigator.of(context).pop();
   }
 
   @override
