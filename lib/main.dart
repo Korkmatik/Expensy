@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.blue,
             ),
           ),
-          TransactionList(_transactions, _deleteTransaction),
+          Expanded(child: TransactionList(_transactions, _deleteTransaction)),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
