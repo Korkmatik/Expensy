@@ -1,3 +1,4 @@
+import 'package:expense_planer/widgets/chart_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -26,6 +27,11 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get maxSpending {
+    double spending = groupedTransactionValues.fold(0.0, (previousValue, element) => previousValue + (element['amount'] as double));
+    return spending > 0 ? spending : 1;
+  }
+
   const Chart(this._transactions, {Key? key}) : super(key: key);
 
   @override
@@ -33,8 +39,16 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(20),
-      child: Row(
-        children: [],
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues.map((data) {
+            String day = (data['day'] as String);
+            double amount = (data['amount'] as double);
+            return Flexible(fit: FlexFit.tight, child: ChartBar(day, amount, amount / maxSpending));
+          }).toList(),
+        ),
       ),
     );
   }
