@@ -24,7 +24,7 @@ class Chart extends StatelessWidget {
       }
 
       return {'day': weekDayIdentifier, 'amount': totalAmount};
-    });
+    }).reversed.toList();
   }
 
   double get maxSpending {
