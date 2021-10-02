@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         accentColor: Colors.amber,
+        errorColor: Colors.red,
         fontFamily: 'Roboto',
         textTheme: ThemeData.light().textTheme.copyWith(
           button: const TextStyle(color: Colors.white),
@@ -67,6 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((transaction) => transaction.id == id);
+    });
+  }
+
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -100,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.blue,
             ),
           ),
-          TransactionList(_transactions),
+          TransactionList(_transactions, _deleteTransaction),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
