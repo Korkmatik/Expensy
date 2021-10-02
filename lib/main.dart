@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         accentColor: Colors.amber,
         fontFamily: 'Roboto',
+        textTheme: ThemeData.light().textTheme.copyWith(
+          button: const TextStyle(color: Colors.white),
+        )
       ),
       home: const MyHomePage(),
     );
