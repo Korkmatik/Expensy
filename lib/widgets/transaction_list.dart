@@ -16,7 +16,7 @@ class TransactionList extends StatelessWidget {
         child: _transactions.isEmpty ? Column(children: [
           Text('No Transaction added yet!', style: Theme.of(context).textTheme.headline6,),
           const SizedBox(height: 20,),
-          Container(height: 20, child: Image.asset('assets/images/hourglass-split.png', fit: BoxFit.cover,)),
+          SizedBox(height: 20, child: Image.asset('assets/images/hourglass-split.png', fit: BoxFit.cover,)),
         ],) : ListView.builder(
           itemBuilder: (context, index) {
             return Card(
