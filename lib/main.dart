@@ -51,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
         id: 't2', title: 'Groceries', amount: 17.42, date: DateTime.now()),*/
   ];
 
+  bool _showChart = false;
+
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
       return element.date
@@ -103,14 +105,24 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Chart(_recentTransactions),
-              elevation: 3,
-              color: Colors.blue,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Show Chart'),
+              Switch(
+                  value: _showChart,
+                  onChanged: (value) {
+                    setState(() {
+                      _showChart = value;
+                    });
+                  }),
+            ],
           ),
+          if (_showChart)
+            SizedBox(
+              width: double.infinity,
+              child: Chart(_recentTransactions),
+            ),
           Expanded(child: TransactionList(_transactions, _deleteTransaction)),
         ],
       ),
