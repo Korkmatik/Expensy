@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'models/transaction.dart';
 import 'widgets/new_transaction.dart';
@@ -6,6 +7,11 @@ import 'widgets/transaction_list.dart';
 import 'package:expense_planer/widgets/chart.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
@@ -18,14 +24,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expense Planner',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        accentColor: Colors.amber,
-        errorColor: Colors.red,
-        fontFamily: 'Roboto',
-        textTheme: ThemeData.light().textTheme.copyWith(
-          button: const TextStyle(color: Colors.white),
-        )
-      ),
+          primarySwatch: Colors.deepPurple,
+          accentColor: Colors.amber,
+          errorColor: Colors.red,
+          fontFamily: 'Roboto',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                button: const TextStyle(color: Colors.white),
+              )),
       home: const MyHomePage(),
     );
   }
@@ -48,9 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
-      return element.date.isAfter(
-          DateTime.now().subtract(const Duration(days: 7))
-      );
+      return element.date
+          .isAfter(DateTime.now().subtract(const Duration(days: 7)));
     }).toList();
   }
 
